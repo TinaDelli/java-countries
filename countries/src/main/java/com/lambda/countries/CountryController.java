@@ -22,7 +22,7 @@ public class CountryController
         return new ResponseEntity<>(CountriesApplication.ourCountryList.countryList, HttpStatus.OK);
     }
 
-    //localhost:2018/start/{letter}
+    //localhost:2018/names/start/{letter}
     @GetMapping(value="start/{letter}",
                 produces = {"application/json"})
     public ResponseEntity<?> getCountries(
@@ -32,5 +32,16 @@ public class CountryController
         ArrayList<Country> rtnCountries = CountriesApplication.ourCountryList.findCountries(c -> c.getName().toUpperCase().charAt(0) == Character.toUpperCase(letter));
         return new ResponseEntity<>(rtnCountries, HttpStatus.OK);
     }
-    
+
+    //localhost:2018/names/size/{number}
+    @GetMapping(value="size/{number}",
+                produces = {"application/json"})
+    public ResponseEntity<?> getCountries(
+            @PathVariable
+                    int number)
+    {
+        ArrayList<Country> rtnCountries = CountriesApplication.ourCountryList.findCountries(c -> (c.getName().length() == number));
+        return new ResponseEntity<>(rtnCountries, HttpStatus.OK);
+    }
+
 }
