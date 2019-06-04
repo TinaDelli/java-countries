@@ -18,7 +18,7 @@ public class CountryController
                     produces = {"application/json"})
     public ResponseEntity<?> getAllCountries()
     {
-        CountriesApplication.ourCountryList.countryList.sort((c1, c2) -> (int) (c1.getPopulation() - c2.getPopulation()));
+        CountriesApplication.ourCountryList.countryList.sort((c1, c2) -> (int)(c1.getPopulation() - c2.getPopulation()));
         return new ResponseEntity<>(CountriesApplication.ourCountryList.countryList, HttpStatus.OK);
     }
 
