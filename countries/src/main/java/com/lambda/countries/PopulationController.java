@@ -31,8 +31,8 @@ public class PopulationController
                 produces = {"application/json"})
     public ResponseEntity<?>getPopMin()
     {
-        Country tempCountry = new Country(CountriesApplication.ourCountryList.findCountry(c -> c.getPopulation() == 95702));
-        return new ResponseEntity<>(tempCountry, HttpStatus.OK);
+        CountriesApplication.ourCountryList.countryList.sort((c1, c2)->(int)(c1.getPopulation() - c2.getPopulation()));
+        return new ResponseEntity<>(CountriesApplication.ourCountryList.countryList.get(0), HttpStatus.OK);
     }
 
 
